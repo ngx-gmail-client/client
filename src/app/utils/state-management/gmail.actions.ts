@@ -5,3 +5,11 @@ export class SetLabels {
   constructor(public payload: any[]) {
   }
 }
+
+export class SetMessages {
+
+  static readonly type = '[GMAIL] Messages';
+
+  constructor(public payload: any[]) {
+  }
+}
