@@ -16,7 +16,7 @@ export const environment = {
       'http://localhost:4200'
     ],
     api_key: 'AIzaSyAfef1LiilMak_VpI4FBFhdnyPMWhACyrQ',
-    scopes: ['https://www.googleapis.com/auth/gmail.readonly'],
+    scopes: ['https://www.googleapis.com/auth/gmail.readonly', 'https://mail.google.com/'],
     discovery_docs: ['https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest']
   }
 };

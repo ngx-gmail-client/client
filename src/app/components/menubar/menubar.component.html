@@ -38,7 +38,7 @@
 
     <div class="divider"></div>
 
-    <button class="btn btn-dark" title="Move to trash">
+    <button (click)="remove()"  class="btn btn-dark" title="Move to trash">
       <fa-icon [icon]="icons.trash"></fa-icon>
     </button>
     <button class="btn btn-dark" title="Spam">
@@ -46,7 +46,10 @@
     </button>
   </div>
   <div>
-    <button class="btn  btn-dark" title="Logout">
+   <!-- <button (click)="signIn()" class="btn  btn-dark" title="Logout">
+      sign in
+    </button>-->
+    <button (click)="signOut()" class="btn  btn-dark" title="Logout">
       <fa-icon [icon]="icons.close"></fa-icon>
     </button>
   </div>

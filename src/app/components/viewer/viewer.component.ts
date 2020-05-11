@@ -10,10 +10,24 @@ import {Message} from '../../models/message';
 })
 export class ViewerComponent implements OnInit {
 
+  /**
+   * Current message
+   */
   @Select(GmailState.currentMessage) message: Observable<Message>;
 
+  /**
+   * Subject of the message
+   */
   subject: string = null;
+
+  /**
+   * Recipient
+   */
   from: { name: string, email: string } = null;
+
+  /**
+   * Message contnet
+   */
   content: string = null;
 
   constructor() {

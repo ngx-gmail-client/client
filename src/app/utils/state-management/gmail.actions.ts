@@ -24,3 +24,10 @@ export class SetCurrentMessage {
   constructor(public payload: Message) {
   }
 }
+
+export  class DeleteMessage {
+
+  static readonly type = '[GMAIL] Delete message';
+
+  constructor(public id: string) { }
+}

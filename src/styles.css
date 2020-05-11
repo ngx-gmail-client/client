@@ -1,6 +1,6 @@
 body {
   overflow: hidden;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 h2 {
@@ -8,7 +8,7 @@ h2 {
 }
 
 h3 {
-  font-size: 14px;
+  font-size: 15px;
 }
 
 pre {
@@ -111,6 +111,22 @@ pre {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-right: 3px solid #f39c12;
   background-color: #fff;
+}
+.application .main-panel app-content-panel .content-panel .messages .message-summary {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+.application .main-panel app-content-panel .content-panel .messages .message-summary div {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 24px;
+}
+.application .main-panel app-content-panel .content-panel .messages .message-summary div:first-child {
+  text-align: right;
+  color: #777;
+  font-size: 10px;
 }
 .application .main-panel app-content-panel .content-panel .viewer {
   padding: 4px;

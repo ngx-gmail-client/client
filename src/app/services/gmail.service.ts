@@ -90,7 +90,10 @@ export class GmailService {
       if (Array.isArray(response.result.messages)) {
 
         response.result.messages.forEach((entity) => {
-          messages.push(new Message(entity));
+
+          this.getMessage(entity.id, 'metadata').then((message: Message) => {
+            messages.push(message);
+          });
         });
       }
 
@@ -103,14 +106,15 @@ export class GmailService {
    * @param id
    * @param format
    */
-  getMessage(id: string, format: string = 'metadata'): any {
+  getMessage(id: string, format: string = 'metadata'): Promise<any> {
 
     const parameters = {userId: 'me', id, format};
 
-    gapi.client.gmail.users.messages.get(parameters).then((response) => {
+    return gapi.client.gmail.users.messages.get(parameters).then((response) => {
 
       const message = new Message(response.result);
-      this.store.dispatch(new SetCurrentMessage(message));
+
+      return message;
     });
   }
 
@@ -118,9 +122,9 @@ export class GmailService {
    * Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer messages.trash instead.
    * @param id
    */
-  deleteMessage(id: string): any {
+  deleteMessage(id: string): Promise<any> {
 
-    gapi.client.gmail.users.messages.delete({
+    return gapi.client.gmail.users.messages.delete({
       userId: 'me',
       id
     });
@@ -136,5 +140,13 @@ export class GmailService {
       userId: 'me',
       ids
     });
+  }
+
+  signIn() : void {
+    gapi.auth2.getAuthInstance().signIn();
+  }
+
+  signOut(): Promise<any> {
+    return gapi.auth2.getAuthInstance().signOut();
   }
 }

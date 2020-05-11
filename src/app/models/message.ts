@@ -1,5 +1,6 @@
 import {BaseModel} from './base-model';
 import * as _ from 'lodash';
+import * as dt from 'date-fns'
 import {Parser} from '../utils/message/parser';
 
 export class Message extends BaseModel {
@@ -45,12 +46,13 @@ export class Message extends BaseModel {
     }
   }
 
-  received(): Date {
+  received(format = false): Date|string {
 
     const entity = _.find(_.get(this.payload, 'headers'), {name: 'Date'});
 
-    if (entity) {
-      return new Date(entity.value);
+    if (entity && _.has(entity, 'value')) {
+
+      return format ? dt.format(new Date(entity.value), 'EEEEEE, yyyy-MM-dd HH:KK') : new Date(entity.value)
     }
   }
 

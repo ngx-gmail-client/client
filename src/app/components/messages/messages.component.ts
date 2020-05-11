@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import {Select} from '@ngxs/store';
+import {Select, Store} from '@ngxs/store';
 import {GmailState} from '../../utils/state-management/gmail.state';
 import {Observable} from 'rxjs';
 import {Message} from '../../models/message';
 import {GmailService} from '../../services/gmail.service';
+import {SetCurrentMessage} from '../../utils/state-management/gmail.actions';
 
 @Component({
   selector: 'app-messages',
@@ -14,17 +15,21 @@ export class MessagesComponent {
 
   @Select(GmailState.messages) messages: Observable<Message[]>;
 
-  constructor(private service: GmailService) { }
+  constructor(private service: GmailService, private store: Store) { }
 
-  view(event: MouseEvent, message: Message): void {
+  view(element: any, message: Message): void {
 
-    this.service.getMessage(message.id, 'full');
-    this.setActive(event);
+    this.service.getMessage(message.id, 'full').then((message: Message) => {
+      this.store.dispatch(new SetCurrentMessage(message));
+    });
+
+    console.dir(element);
+    this.setActive(element);
   }
 
-  setActive(event: MouseEvent){
+  setActive(element){
 
-    const parent = _.get(event.target, 'parentElement');
+    const parent = _.get(element, 'parentElement');
 
     if(parent){
 
@@ -33,6 +38,6 @@ export class MessagesComponent {
       }
     }
 
-    _.get(event.target, 'classList').add('active');
+    _.get(element, 'classList').add('active');
   }
 }

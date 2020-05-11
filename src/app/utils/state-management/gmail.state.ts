@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext, StateToken} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {GmailModel} from './gmail.model';
-import {SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
+import {DeleteMessage, SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
 import {Message} from '../../models/message';
 import {Label} from '../../models/label';
 
@@ -54,6 +54,17 @@ export class GmailState {
 
     patchState({
       currentMessage: action.payload
+    });
+  }
+
+  @Action(DeleteMessage)
+  deleteMessage({getState, setState}: StateContext<GmailModel>, {id}: DeleteMessage) {
+
+    const state = getState();
+
+    setState({
+      ...state,
+      messages: state.messages.filter(item => item.id !== id)
     });
   }
 }

@@ -1,8 +1,12 @@
 <div class="messages">
   <ul class="list-group">
     <ng-container *ngFor="let message of messages | async">
-      <li class="list-group-item list-group-item-action" (click)="view($event, message)">
-        {{message.id}}
+      <li class="list-group-item list-group-item-action" (click)="view(listitem, message)" #listitem>
+        <div class="message-summary">
+          <div>{{message.received(true)}}</div>
+          <div>{{message.subject()}}</div>
+          <div>{{message.from()['name']}}</div>
+        </div>
       </li>
     </ng-container>
   </ul>
