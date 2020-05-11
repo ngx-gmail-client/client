@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {faBan, faEdit, faExternalLinkAlt, faReply, faReplyAll, faShare, faTrash} from '@fortawesome/free-solid-svg-icons';
+import {
+  faBan, faClock, faEdit, faExternalLinkAlt, faEye, faReply, faReplyAll, faSearch, faShare, faSmile, faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-menubar',
@@ -8,16 +10,13 @@ import {faBan, faEdit, faExternalLinkAlt, faReply, faReplyAll, faShare, faTrash}
 export class MenubarComponent implements OnInit {
 
   public icons = {
-    edit: faEdit,
-    close: faExternalLinkAlt,
-    reply: faReply,
-    replyAll: faReplyAll,
-    forward: faShare,
-    trash: faTrash,
-    spam: faBan
+    edit: faEdit, close: faExternalLinkAlt, reply: faReply, replyAll: faReplyAll,
+    forward: faShare, trash: faTrash, spam: faBan, snooze: faClock, favorite: faSmile,
+    readstatus: faEye, search: faSearch
   };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

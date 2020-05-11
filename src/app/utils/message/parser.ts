@@ -20,6 +20,7 @@ export class Parser {
 
     this.mimeType = _.get(this.payload, 'mimeType', null);
     this.init();
+
   }
 
   getContent(): string {
@@ -27,6 +28,14 @@ export class Parser {
   }
 
   init(): void {
+
+    if(_.has(this.payload['body'], 'data')){
+
+      const body = this.decode(_.get(this.payload['body'], 'data'));
+      this.content = this.stripHtml('<pre>' + body + '</pre>');
+
+      return;
+    }
 
     switch (this.mimeType) {
 
