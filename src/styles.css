@@ -1,5 +1,14 @@
 body {
   overflow: hidden;
+  font-size: 12px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 14px;
 }
 
 .application {
@@ -16,14 +25,23 @@ body {
   flex-direction: row;
 }
 .application .main-menu div {
-  padding: 0 4px 0 4px;
+  padding: 4px 4px 0 4px;
   flex: 1;
 }
 .application .main-menu div button {
   width: 38px;
 }
-.application .main-menu div:last-child {
-  text-align: right;
+.application .main-menu div:first-child .divider {
+  float: left;
+  height: 42px;
+  width: 18px;
+}
+.application .main-menu div:first-child button {
+  float: left;
+  margin-right: 8px;
+}
+.application .main-menu div:last-child button {
+  float: right;
 }
 .application .main-panel {
   display: flex;
@@ -37,6 +55,12 @@ body {
 }
 .application .main-panel .sidebar .list-group-item {
   cursor: pointer;
+}
+.application .main-panel .sidebar .active {
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 3px solid #0056B3;
+  background-color: #fff;
 }
 .application .main-panel .divider {
   width: 2px;
@@ -63,12 +87,25 @@ body {
 .application .main-panel app-content-panel .content-panel .messages .list-group-item {
   cursor: pointer;
 }
+.application .main-panel app-content-panel .content-panel .messages .active {
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-right: 3px solid #0056B3;
+  background-color: #fff;
+}
 .application .main-panel app-content-panel .content-panel .viewer {
   padding: 4px;
   flex: 1;
   height: calc(100vh - 52px);
   overflow: scroll;
   width: calc(100vw - 600px);
+}
+.application .main-panel app-content-panel .content-panel .viewer table {
+  margin: 12px;
+}
+.application .main-panel app-content-panel .content-panel .viewer table .sender {
+  color: #0056B3;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=styles.css.map */

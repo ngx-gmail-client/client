@@ -1,11 +1,28 @@
 <div class="main-menu">
   <div>
-    <button class="btn btn-dark">
+    <button class="btn btn-dark" title="Compose new mail">
       <fa-icon [icon]="icons.edit"></fa-icon>
+    </button>
+    <div class="divider"></div>
+    <button class="btn btn-dark" title="Reply">
+      <fa-icon [icon]="icons.reply"></fa-icon>
+    </button>
+    <button class="btn btn-dark" title="Reply all">
+      <fa-icon [icon]="icons.replyAll"></fa-icon>
+    </button>
+    <button class="btn btn-dark" title="Forward">
+      <fa-icon [icon]="icons.forward"></fa-icon>
+    </button>
+    <div class="divider"></div>
+    <button class="btn btn-dark" title="Move to trash">
+      <fa-icon [icon]="icons.trash"></fa-icon>
+    </button>
+    <button class="btn btn-dark" title="Spam">
+      <fa-icon [icon]="icons.spam"></fa-icon>
     </button>
   </div>
   <div>
-    <button class="btn  btn-dark">
+    <button class="btn  btn-dark" title="Logout">
       <fa-icon [icon]="icons.close"></fa-icon>
     </button>
   </div>

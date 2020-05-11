@@ -110,8 +110,6 @@ export class GmailService {
     gapi.client.gmail.users.messages.get(parameters).then((response) => {
 
       const message = new Message(response.result);
-
-      console.dir(message.id);
       this.store.dispatch(new SetCurrentMessage(message));
     });
   }

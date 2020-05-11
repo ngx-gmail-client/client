@@ -1,5 +1,6 @@
 import {BaseModel} from './base-model';
 import * as _ from 'lodash';
+import {Parser} from '../utils/message/parser';
 
 export class Message extends BaseModel {
 
@@ -48,8 +49,13 @@ export class Message extends BaseModel {
 
     const entity = _.find(_.get(this.payload, 'headers'), {name: 'Date'});
 
-    if(entity){
+    if (entity) {
       return new Date(entity.value);
     }
+  }
+
+  content(): any {
+
+    return (new Parser(this.payload)).getContent();
   }
 }

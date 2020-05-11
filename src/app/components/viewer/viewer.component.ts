@@ -14,6 +14,7 @@ export class ViewerComponent implements OnInit {
 
   subject: string = null;
   from: { name: string, email: string } = null;
+  content: string = null;
 
   constructor() {
   }
@@ -23,12 +24,13 @@ export class ViewerComponent implements OnInit {
     this.message.subscribe((entity) => {
 
       if (entity instanceof Message) {
-        console.dir(entity);
 
         this.subject = entity.subject();
         this.from = entity.from();
 
         entity.received();
+
+        this.content = entity.content();
       }
 
     });

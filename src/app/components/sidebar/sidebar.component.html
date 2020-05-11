@@ -2,6 +2,7 @@
   <ul class="list-group">
     <ng-container *ngFor="let label of labels | async">
       <li *ngIf="label.labelListVisibility === 'labelShow' && label.type === 'system'"
+          (click)="labelClick($event, label)"
           class="list-group-item list-group-item-action">
         {{label.getLabel()}}
       </li>

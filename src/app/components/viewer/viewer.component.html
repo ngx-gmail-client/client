@@ -1,3 +1,17 @@
 <div class="viewer">
-  <pre>{{subject}}</pre>
+
+  <div class="content-header">
+    <table class="w-95">
+      <tr>
+        <td class="font-weight-bold" style="width: 100px;">Subject:</td>
+        <td>{{subject}}</td>
+      </tr>
+      <tr *ngIf="from?.email">
+        <td class="font-weight-bold">From:</td>
+        <td><span class="sender">{{from.name}}</span> - {{from.email}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="padding: 12px;" [innerHTML]="content"></div>
 </div>

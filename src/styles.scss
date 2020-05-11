@@ -1,5 +1,16 @@
+$active-color: #0056B3;
+
 body {
   overflow: hidden;
+  font-size: 12px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 14px;
 }
 
 .application {
@@ -16,15 +27,31 @@ body {
     flex-direction: row;
 
     div {
-      padding: 0 4px 0 4px;
+      padding: 4px 4px 0 4px;
       flex: 1;
 
       button {
         width: 38px
       }
 
+      &:first-child {
+
+        .divider {
+          float: left;
+          height: 42px;
+          width: 18px;
+        }
+        button {
+          float: left;
+          margin-right: 8px;
+        }
+      }
+
       &:last-child {
-        text-align: right;
+
+        button {
+          float: right;
+        }
       }
     }
   }
@@ -42,6 +69,13 @@ body {
 
       .list-group-item {
         cursor: pointer;
+      }
+
+      .active {
+        color: #000;
+        border: 1px solid rgba(0,0,0,.125) ;
+        border-right: 3px solid $active-color;
+        background-color: #fff;
       }
     }
 
@@ -71,6 +105,13 @@ body {
           .list-group-item {
             cursor: pointer;
           }
+
+          .active {
+            color: #000;
+            border: 1px solid rgba(0,0,0,.125) ;
+            border-right: 3px solid $active-color;
+            background-color: #fff;
+          }
         }
 
         .viewer {
@@ -79,6 +120,15 @@ body {
           height: calc(100vh - 52px);
           overflow: scroll;
           width: calc(100vw - 600px);
+
+          table {
+            margin: 12px;
+
+            .sender {
+              color: $active-color;
+              font-weight: bold;
+            }
+          }
         }
       }
     }
