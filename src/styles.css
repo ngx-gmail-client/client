@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .application {
   display: flex;
   flex-direction: column;
@@ -44,8 +48,27 @@
   background-color: #fff;
 }
 .application .main-panel app-content-panel .content-panel {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   height: calc(100vh - 48px);
+}
+.application .main-panel app-content-panel .content-panel .messages {
+  padding: 4px;
+  width: 300px;
+  flex: 1;
+  height: calc(100vh - 52px);
+  overflow: scroll;
+}
+.application .main-panel app-content-panel .content-panel .messages .list-group-item {
+  cursor: pointer;
+}
+.application .main-panel app-content-panel .content-panel .viewer {
+  padding: 4px;
+  flex: 1;
+  height: calc(100vh - 52px);
+  overflow: scroll;
+  width: calc(100vw - 600px);
 }
 
 /*# sourceMappingURL=styles.css.map */

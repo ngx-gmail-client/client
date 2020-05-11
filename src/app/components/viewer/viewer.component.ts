@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Select} from '@ngxs/store';
+import {GmailState} from '../../utils/state-management/gmail.state';
+import {Observable} from 'rxjs';
+import {Message} from '../../models/message';
 
 @Component({
   selector: 'app-viewer',
@@ -6,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerComponent implements OnInit {
 
-  constructor() { }
+  @Select(GmailState.currentMessage) message: Observable<Message>;
 
-  ngOnInit() {
+  subject: string = null;
+  from: { name: string, email: string } = null;
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+
+    this.message.subscribe((entity) => {
+
+      if (entity instanceof Message) {
+        console.dir(entity);
+
+        this.subject = entity.subject();
+        this.from = entity.from();
+
+        entity.received();
+      }
+
+    });
   }
 
 }

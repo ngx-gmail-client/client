@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 .application {
   display: flex;
   flex-direction: column;
@@ -19,7 +23,7 @@
         width: 38px
       }
 
-      &:last-child{
+      &:last-child {
         text-align: right;
       }
     }
@@ -50,9 +54,32 @@
     app-content-panel {
       flex: 1;
       background-color: #fff;
+
       .content-panel {
-        display: block;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         height: calc(100vh - 48px);
+
+        .messages {
+          padding: 4px;
+          width: 300px;
+          flex: 1;
+          height: calc(100vh - 52px);
+          overflow: scroll;
+
+          .list-group-item {
+            cursor: pointer;
+          }
+        }
+
+        .viewer {
+          padding: 4px;
+          flex: 1;
+          height: calc(100vh - 52px);
+          overflow: scroll;
+          width: calc(100vw - 600px);
+        }
       }
     }
   }

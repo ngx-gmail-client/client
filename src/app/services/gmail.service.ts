@@ -1,8 +1,9 @@
 import {Injectable, NgZone} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {Store} from '@ngxs/store';
-import {SetLabels} from '../utils/state-management/gmail.actions';
+import {SetCurrentMessage, SetLabels, SetMessages} from '../utils/state-management/gmail.actions';
 import {Label} from '../models/label';
+import {Message} from '../models/message';
 
 declare var gapi: any;
 
@@ -83,7 +84,17 @@ export class GmailService {
     const parameters = {userId: 'me', labelIds, q: query, pageToken, maxResults};
 
     gapi.client.gmail.users.messages.list(parameters).then((response) => {
-      console.dir(response);
+
+      const messages: Message[] = [];
+
+      if (Array.isArray(response.result.messages)) {
+
+        response.result.messages.forEach((entity) => {
+          messages.push(new Message(entity));
+        });
+      }
+
+      this.store.dispatch(new SetMessages(messages));
     });
   }
 
@@ -97,7 +108,11 @@ export class GmailService {
     const parameters = {userId: 'me', id, format};
 
     gapi.client.gmail.users.messages.get(parameters).then((response) => {
-      console.dir(response);
+
+      const message = new Message(response.result);
+
+      console.dir(message.id);
+      this.store.dispatch(new SetCurrentMessage(message));
     });
   }
 

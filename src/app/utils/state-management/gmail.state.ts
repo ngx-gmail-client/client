@@ -1,7 +1,9 @@
 import {Action, Selector, State, StateContext, StateToken} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {GmailModel} from './gmail.model';
-import {SetLabels, SetMessages} from './gmail.actions';
+import {SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
+import {Message} from '../../models/message';
+import {Label} from '../../models/label';
 
 const GMAIL_STATE_TOKEN = new StateToken<GmailModel>('gmail');
 
@@ -9,20 +11,26 @@ const GMAIL_STATE_TOKEN = new StateToken<GmailModel>('gmail');
   name: GMAIL_STATE_TOKEN,
   defaults: {
     labels: [],
-    messages: []
+    messages: [],
+    currentMessage: null
   }
 })
 @Injectable()
 export class GmailState {
 
   @Selector()
-  static labels(state: GmailModel): any[] {
+  static labels(state: GmailModel): Label[] {
     return state.labels;
   }
 
   @Selector()
-  static messages(state: GmailModel): any[] {
+  static messages(state: GmailModel): Message[] {
     return state.messages;
+  }
+
+  @Selector()
+  static currentMessage(state: GmailModel): Message {
+    return state.currentMessage;
   }
 
   @Action(SetLabels)
@@ -38,6 +46,14 @@ export class GmailState {
 
     patchState({
       messages: action.payload
+    });
+  }
+
+  @Action(SetCurrentMessage)
+  setCurrentMessage({getState, patchState}: StateContext<GmailModel>, action: SetCurrentMessage): any {
+
+    patchState({
+      currentMessage: action.payload
     });
   }
 }
