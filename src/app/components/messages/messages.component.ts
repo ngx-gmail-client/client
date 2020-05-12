@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import * as _ from 'lodash';
 import {Select, Store} from '@ngxs/store';
 import {GmailState} from '../../utils/state-management/gmail.state';
@@ -36,9 +36,23 @@ export class MessagesComponent {
 
     this.service.getMessage(message.id, 'full').then((message: Message) => {
       this.store.dispatch(new SetCurrentMessage(message));
+      this.markAsRead(message);
     });
 
     this.setActive(element);
+  }
+
+  markAsRead(message: Message): void {
+
+    this.service.markAsRead(message.id, true).then(() => {
+
+      const index = message.labelIds.indexOf("UNREAD");
+
+      if(index !== -1){
+        message.labelIds.splice(index, 1);
+      }
+
+    });
   }
 
   setActive(element){

@@ -133,7 +133,7 @@ pre {
 .application .main-panel app-content-panel .content-panel .messages .message-summary .summary-header .received {
   text-align: right;
   color: #777;
-  font-size: 10px;
+  font-size: 12px;
 }
 .application .main-panel app-content-panel .content-panel .messages .message-summary div {
   text-overflow: ellipsis;
