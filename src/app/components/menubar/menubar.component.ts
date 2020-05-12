@@ -22,6 +22,7 @@ import {GmailService} from '../../services/gmail.service';
 import {DeleteMessage, SetLabels, SetMessages, UpdateMessage} from '../../utils/state-management/gmail.actions';
 import {MatDialog} from '@angular/material/dialog';
 import {SnoozeDialogComponent} from '../snooze-dialog/snooze-dialog.component';
+import {ComposerComponent} from '../composer/composer.component';
 
 @Component({
   selector: 'app-menubar',
@@ -65,6 +66,21 @@ export class MenubarComponent implements OnInit {
     });
   }
 
+  compose(): void {
+
+    const dialogRef = this.dialog.open(ComposerComponent, {
+      width: '1024px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+    });
+  }
+
+  /**
+   * @todo Not yet implemented by Gmail api
+   */
   showSnoozeDialog(): void {
 
     const dialogRef = this.dialog.open(SnoozeDialogComponent, {

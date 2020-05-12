@@ -13,23 +13,22 @@ import {MessagesComponent} from './components/messages/messages.component';
 import {GmailService} from './services/gmail.service';
 import {NgxsModule} from '@ngxs/store';
 import {GmailState} from './utils/state-management/gmail.state';
-import {environment} from '../environments/environment';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {MatDialogModule} from '@angular/material/dialog';
-import { SnoozeDialogComponent } from './components/snooze-dialog/snooze-dialog.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import {SnoozeDialogComponent} from './components/snooze-dialog/snooze-dialog.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ComposerComponent } from './components/composer/composer.component';
 
 @NgModule({
   declarations: [AppComponent, SidebarComponent, MenubarComponent, ContentPanelComponent, MainPanelComponent, ViewerComponent,
     MessagesComponent,
-    SnoozeDialogComponent],
+    SnoozeDialogComponent,
+    ComposerComponent],
   imports: [
     BrowserModule, AppRoutingModule, FontAwesomeModule, NgxsModule.forRoot([GmailState], {
       developmentMode: false
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot(), MatDialogModule, MatDatepickerModule, MatNativeDateModule, BrowserAnimationsModule
+    NgxsReduxDevtoolsPluginModule.forRoot(), MatDialogModule, BrowserAnimationsModule
   ],
   providers: [GmailService],
   bootstrap: [AppComponent]
