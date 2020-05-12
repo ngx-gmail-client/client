@@ -156,6 +156,20 @@ export class GmailService {
     });
   }
 
+  /**
+   * Remove a label from the message like e.g. UNREAD
+   * @param labelId
+   */
+  starred(id, remove: boolean = true) {
+
+    return  gapi.client.gmail.users.messages.modify({
+      userId: 'me',
+      id,
+      addLabelIds: remove === false ? ['STARRED'] : [],
+      removeLabelIds: remove === true ? ['STARRED'] : []
+    });
+  }
+
   signIn() : void {
     gapi.auth2.getAuthInstance().signIn();
   }

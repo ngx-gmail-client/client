@@ -31,3 +31,10 @@ export  class DeleteMessage {
 
   constructor(public id: string) { }
 }
+
+export class UpdateMessage {
+
+  static readonly type = '[GMAIL] Update message';
+
+  constructor(public message: Message) { }
+}

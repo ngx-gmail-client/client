@@ -1,11 +1,11 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import * as _ from 'lodash';
 import {Select, Store} from '@ngxs/store';
 import {GmailState} from '../../utils/state-management/gmail.state';
 import {Observable} from 'rxjs';
 import {Message} from '../../models/message';
 import {GmailService} from '../../services/gmail.service';
-import {SetCurrentMessage} from '../../utils/state-management/gmail.actions';
+import {SetCurrentMessage, UpdateMessage} from '../../utils/state-management/gmail.actions';
 import {faStar} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -30,7 +30,9 @@ export class MessagesComponent {
    * @param service
    * @param store
    */
-  constructor(private service: GmailService, private store: Store) { }
+  constructor(private service: GmailService, private store: Store) {
+
+  }
 
   view(element: any, message: Message): void {
 
@@ -44,24 +46,22 @@ export class MessagesComponent {
 
   markAsRead(message: Message): void {
 
-    this.service.markAsRead(message.id, true).then(() => {
+    this.service.markAsRead(message.id, true).then((response) => {
 
-      const index = message.labelIds.indexOf("UNREAD");
-
-      if(index !== -1){
-        message.labelIds.splice(index, 1);
+      if (_.has(response.result, 'labelIds')) {
+        message.labelIds = _.get(response.result, 'labelIds');
+        this.store.dispatch(new UpdateMessage(message));
       }
-
     });
   }
 
-  setActive(element){
+  setActive(element) {
 
     const parent = _.get(element, 'parentElement');
 
-    if(parent){
+    if (parent) {
 
-      for (let element of  parent.children){
+      for (let element of parent.children) {
         _.get(element, 'classList').remove('active');
       }
     }

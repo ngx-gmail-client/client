@@ -1,9 +1,10 @@
 import {Action, Selector, State, StateContext, StateToken} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {GmailModel} from './gmail.model';
-import {DeleteMessage, SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
+import {DeleteMessage, SetCurrentMessage, SetLabels, SetMessages, UpdateMessage} from './gmail.actions';
 import {Message} from '../../models/message';
 import {Label} from '../../models/label';
+import {patch, updateItem} from '@ngxs/store/operators';
 
 const GMAIL_STATE_TOKEN = new StateToken<GmailModel>('gmail');
 
@@ -66,5 +67,15 @@ export class GmailState {
       ...state,
       messages: state.messages.filter(item => item.id !== id)
     });
+  }
+
+  @Action(UpdateMessage)
+  updateMessage(ctx: StateContext<GmailModel>, {message}: UpdateMessage) {
+
+    ctx.setState(
+      patch({
+        messages: updateItem(item => item.id === message.id, message)
+      })
+    );
   }
 }
