@@ -15,15 +15,21 @@ import {NgxsModule} from '@ngxs/store';
 import {GmailState} from './utils/state-management/gmail.state';
 import {environment} from '../environments/environment';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
+import {MatDialogModule} from '@angular/material/dialog';
+import { SnoozeDialogComponent } from './components/snooze-dialog/snooze-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [AppComponent, SidebarComponent, MenubarComponent, ContentPanelComponent, MainPanelComponent, ViewerComponent,
-    MessagesComponent],
+    MessagesComponent,
+    SnoozeDialogComponent],
   imports: [
     BrowserModule, AppRoutingModule, FontAwesomeModule, NgxsModule.forRoot([GmailState], {
       developmentMode: false
     }),
-    NgxsReduxDevtoolsPluginModule.forRoot()
+    NgxsReduxDevtoolsPluginModule.forRoot(), MatDialogModule, MatDatepickerModule, MatNativeDateModule, BrowserAnimationsModule
   ],
   providers: [GmailService],
   bootstrap: [AppComponent]

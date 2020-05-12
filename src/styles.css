@@ -16,6 +16,10 @@ pre {
   font-size: 12px;
 }
 
+input:focus, button:focus {
+  outline: none;
+}
+
 .application {
   display: flex;
   flex-direction: column;
@@ -154,6 +158,15 @@ pre {
 .application .main-panel app-content-panel .content-panel .viewer table .sender {
   color: #0056B3;
   font-weight: bold;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
 /*# sourceMappingURL=styles.css.map */

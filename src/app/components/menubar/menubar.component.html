@@ -21,7 +21,7 @@
     <button (click)="swapStarred()" class="btn btn-dark" title="Mark as favorite">
       <fa-icon [icon]="icons.favorite"></fa-icon>
     </button>
-    <button class="btn btn-dark" title="Snooze">
+    <button (click)="showSnoozeDialog()" class="btn btn-dark" title="Snooze">
       <fa-icon [icon]="icons.snooze"></fa-icon>
     </button>
     <button (click)="swapReadStatus()" class="btn btn-dark" title="Swap read status">
