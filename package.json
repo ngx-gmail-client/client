@@ -1,6 +1,7 @@
 {
   "name": "gmail-client",
   "version": "0.0.0",
+  "git" : "https://github.com/ngx-gmail-client/client.git",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

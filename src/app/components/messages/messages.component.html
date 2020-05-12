@@ -3,8 +3,15 @@
     <ng-container *ngFor="let message of messages | async">
       <li class="list-group-item list-group-item-action" (click)="view(listitem, message)" #listitem>
         <div class="message-summary">
-          <div>{{message.received(true)}}</div>
-          <div>{{message.subject()}}</div>
+          <div class="summary-header">
+            <div class="starred">
+              <fa-icon *ngIf="message.isStarred()" [icon]="icons.star"></fa-icon>
+            </div>
+            <div class="received">
+              {{message.received(true)}}
+            </div>
+          </div>
+          <div [ngClass]="message.isUnRead() ? 'unread' : null">{{message.subject()}}</div>
           <div>{{message.from()['name']}}</div>
         </div>
       </li>

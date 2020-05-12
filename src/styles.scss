@@ -123,6 +123,11 @@ pre {
           height: calc(100vh - 52px);
           overflow: scroll;
 
+          .unread {
+            font-weight: bold;
+            color: $indicate-color;
+          }
+
           .list-group-item {
             cursor: pointer;
           }
@@ -139,13 +144,24 @@ pre {
             flex-wrap: nowrap;
             flex-direction: column;
 
-            div {
+            .summary-header {
+              display: flex;
+              flex-direction: row;
 
-              &:first-child {
+              .starred {
+                flex: 1;
+                color: $active-color;
+                font-size: 10px;
+              }
+
+              .received {
                 text-align: right;
                 color: #777;
                 font-size: 10px;
               }
+            }
+
+            div {
 
               text-overflow: ellipsis;
               overflow: hidden;

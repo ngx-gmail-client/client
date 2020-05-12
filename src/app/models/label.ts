@@ -2,7 +2,7 @@ import {BaseModel} from './base-model';
 
 export class Label extends BaseModel {
 
-  id: 'CHAT';
+  id: 'string';
   labelListVisibility: 'string' = null;
   messageListVisibility: 'string' = null;
   name: 'string' = null;

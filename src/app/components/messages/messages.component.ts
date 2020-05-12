@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {Message} from '../../models/message';
 import {GmailService} from '../../services/gmail.service';
 import {SetCurrentMessage} from '../../utils/state-management/gmail.actions';
+import {faStar} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-messages',
@@ -13,8 +14,22 @@ import {SetCurrentMessage} from '../../utils/state-management/gmail.actions';
 })
 export class MessagesComponent {
 
+  /**
+   * icons used by this component
+   */
+  icons = {
+    star: faStar
+  };
+
+  /**
+   * Listener for messages
+   */
   @Select(GmailState.messages) messages: Observable<Message[]>;
 
+  /**
+   * @param service
+   * @param store
+   */
   constructor(private service: GmailService, private store: Store) { }
 
   view(element: any, message: Message): void {
@@ -23,7 +38,6 @@ export class MessagesComponent {
       this.store.dispatch(new SetCurrentMessage(message));
     });
 
-    console.dir(element);
     this.setActive(element);
   }
 

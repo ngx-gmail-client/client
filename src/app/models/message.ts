@@ -1,6 +1,6 @@
 import {BaseModel} from './base-model';
 import * as _ from 'lodash';
-import * as dt from 'date-fns'
+import * as dt from 'date-fns';
 import {Parser} from '../utils/message/parser';
 
 export class Message extends BaseModel {
@@ -46,18 +46,38 @@ export class Message extends BaseModel {
     }
   }
 
-  received(format = false): Date|string {
+  /**
+   * Message received at ...
+   * @param format
+   */
+  received(format = false): Date | string {
 
     const entity = _.find(_.get(this.payload, 'headers'), {name: 'Date'});
 
     if (entity && _.has(entity, 'value')) {
 
-      return format ? dt.format(new Date(entity.value), 'EEEEEE, yyyy-MM-dd HH:KK') : new Date(entity.value)
+      return format ? dt.format(new Date(entity.value), 'EEEEEE, yyyy-MM-dd HH:KK') : new Date(entity.value);
     }
   }
 
-  content(): any {
-
+  /**
+   * Message content
+   */
+  content(): string {
     return (new Parser(this.payload)).getContent();
+  }
+
+  /**
+   * True if the message is unread
+   */
+  isUnRead(): boolean {
+    return this.labelIds.indexOf("UNREAD") !== -1 ? true : false;
+  }
+
+  /**
+   * Message is starred for whatever reason
+   */
+  isStarred(): boolean {
+    return this.labelIds.indexOf("STARRED") !== -1 ? true : false;
   }
 }

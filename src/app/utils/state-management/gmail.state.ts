@@ -1,7 +1,7 @@
 import {Action, Selector, State, StateContext, StateToken} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {GmailModel} from './gmail.model';
-import {DeleteMessage, SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
+import {AddMessage, DeleteMessage, SetCurrentMessage, SetLabels, SetMessages} from './gmail.actions';
 import {Message} from '../../models/message';
 import {Label} from '../../models/label';
 
