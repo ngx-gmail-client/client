@@ -1,8 +1,14 @@
 $active-color: #f39c12;
 $indicate-color: #0056B3;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 body {
   overflow: hidden;
@@ -17,9 +23,13 @@ h3 {
   font-size: 15px;
 }
 
+extarea, select, input, button, span {
+  outline: none;
+}
+
 pre {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,
-  "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 12px;
 }
 
@@ -95,7 +105,7 @@ pre {
 
       .active {
         color: #000;
-        border: 1px solid rgba(0,0,0,.125) ;
+        border: 1px solid rgba(0, 0, 0, .125);
         border-right: 3px solid $active-color;
         background-color: #fff;
       }
@@ -137,7 +147,7 @@ pre {
 
           .active {
             color: #000;
-            border: 1px solid rgba(0,0,0,.125) ;
+            border: 1px solid rgba(0, 0, 0, .125);
             border-right: 3px solid $active-color;
             background-color: #fff;
           }
@@ -199,6 +209,12 @@ pre {
 
   #editor {
     height: 600px;
+  }
+
+  .footer {
+    button {
+      width: 120px;
+    }
   }
 }
 
